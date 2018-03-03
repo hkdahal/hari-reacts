@@ -30,7 +30,7 @@ class TopicsScreen extends Component {
 
     renderLoading() {
         return (
-            <p>Loading...</p>
+            <p>Loading topics...</p>
         )
     }
 

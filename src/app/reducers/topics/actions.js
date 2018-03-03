@@ -22,7 +22,7 @@ export function selectTopic(topicUrl) {
         const newSelectedTopics = selectedTopics.length < 3 ?
             selectedTopics.concat(topicUrl) :
             selectedTopics.slice(1).concat(topicUrl);
-        dispatch({ type: types.TOPICS_FETCHED, selectedTopicUrls: newSelectedTopics })
+        dispatch({ type: types.TOPICS_SELECTED, selectedTopicUrls: newSelectedTopics })
     }
 }
 
