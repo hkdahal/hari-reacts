@@ -21,6 +21,9 @@ class TopicsScreen extends Component {
                     rowsIdArray={this.props.rowsIdArray}
                     rowsById={this.props.rowsById}
                     renderRow={this.renderRow.bind(this)}/>
+                {!this.props.canFinalizeSelection ? false :
+                    <button className="NextScreen" onClick={this.onNextScreenClick.bind(this)} />
+                }
             </div>
         )
     }
@@ -48,6 +51,10 @@ class TopicsScreen extends Component {
     onRowClick(rowId) {
         this.props.dispatch(topicsActions.selectTopic(rowId))
     }
+
+    onNextScreenClick() {
+        this.props.dispatch(topicsActions.finalizeTopicSelection())
+    }
 }
 
 // which props do we want to inject, given the global store state?
@@ -55,7 +62,8 @@ function mapStateTopProps(state) {
     return {
         rowsById: topicsSelectors.getTopicsByUrl(state),
         rowsIdArray: topicsSelectors.getTopicsUrlArray(state),
-        selectedIdsMap: topicsSelectors.getSelectedTopicUrlsMap(state)
+        selectedIdsMap: topicsSelectors.getSelectedTopicUrlsMap(state),
+        canFinalizeSelection: topicsSelectors.isTopicSelectionValid(state)
     }
 }
 

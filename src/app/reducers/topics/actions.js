@@ -25,3 +25,7 @@ export function selectTopic(topicUrl) {
         dispatch({ type: types.TOPICS_FETCHED, selectedTopicUrls: newSelectedTopics })
     }
 }
+
+export function finalizeTopicSelection() {
+    return({ type: types.TOPIC_SELECTION_FINALIZED })
+}
