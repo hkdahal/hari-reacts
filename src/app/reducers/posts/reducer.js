@@ -3,7 +3,8 @@
 // this is the only way to change the store's state
 // the other exports in this file are selectors, which is business logic that digests parts of the store's state
 // for easier consumption by views
-
+import _ from 'lodash'
+import * as types from './actionTypes'
 import Immutable from 'seamless-immutable'
 
 const initialState = Immutable({
@@ -14,7 +15,29 @@ const initialState = Immutable({
 
 export default function reduce(state = initialState, action = {}) {
     switch (action.type) {
+        case types.POSTS_FETCHED:
+            return state.merge({
+                postsById: action.postsById
+            })
+        case types.FILTER_CHANGED:
+            return state.merge({
+                currentFilter: action.filter
+            })
         default:
             return state
     }
+}
+
+// selectors
+
+export function getPosts(state) {
+    const currentFilter = state.posts.currentFilter
+    const postsById = state.posts.postsById
+    const postsIdArray = currentFilter === 'all' ?
+        _.keys(postsById) :
+        _.filter(_.keys(postsById), (postId) => postsById[postId].topicUrl === currentFilter)
+    return [postsById, postsIdArray]
+}
+export function getCurrentFilter(state) {
+    return state.posts.currentFilter
 }

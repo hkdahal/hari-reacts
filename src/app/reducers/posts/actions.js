@@ -16,3 +16,6 @@ export function fetchPosts() {
         }
     }
 }
+export function changeFilter(newFilter) {
+    return({ type: types.FILTER_CHANGED, filter: newFilter })
+}

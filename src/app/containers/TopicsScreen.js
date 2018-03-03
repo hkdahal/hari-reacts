@@ -40,8 +40,7 @@ class TopicsScreen extends Component {
             <ListRow
                 rowId={rowId}
                 onClick={this.onRowClick.bind(this)}
-                selected={selected}
-            >
+                selected={selected}>
                 <h3>{row.title}</h3>
                 <p>{row.description}</p>
             </ListRow>
