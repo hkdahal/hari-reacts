@@ -19,3 +19,6 @@ export function fetchPosts() {
 export function changeFilter(newFilter) {
     return({ type: types.FILTER_CHANGED, filter: newFilter })
 }
+export function selectPost(postId) {
+    return({ type: types.POSTS_FETCHED, postId })
+}

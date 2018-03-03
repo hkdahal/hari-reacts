@@ -41,3 +41,6 @@ export function getPosts(state) {
 export function getCurrentFilter(state) {
     return state.posts.currentFilter
 }
+export function getCurrentPost(state) {
+    return _.get(state.posts.postsById, state.posts.currentpostId)
+}
